@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import database from './database';
 
 // Boot express
 const app: Application = express();
@@ -12,3 +13,5 @@ app.use('/', (req: Request, res: Response) => {
 // Start server
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
+
+console.log(database);

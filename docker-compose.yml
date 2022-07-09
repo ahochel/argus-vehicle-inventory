@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   frontend:
     container_name: argus-vehicle-inventory-frontend
@@ -20,14 +22,29 @@ services:
       - 3333:3333
     depends_on:
       - mongodb
+    environment:
+      DB_HOST: mongodb
+      DB_PORT: 27017
+      DB_USER: ${MONGODB_APP_USER}
+      DB_PASS: ${MONGODB_APP_PASS}
+      DB_NAME: ${MONGODB_APP_DBNAME}
 
   mongodb:
     container_name: argus-vehicle-inventory-mongodb
-    image: mongo:4.4
+    image: mongo:5.0
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
-      - ~/apps/mongo:/data/db
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+      - ./provision/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=123!@#
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASS}
+      MONGODB_APP_USER: ${MONGODB_APP_USER}
+      MONGODB_APP_PASS: ${MONGODB_APP_PASS}
+      MONGODB_APP_DBNAME: ${MONGODB_APP_DBNAME}
+
+volumes:
+  mongodb_data:
+  mongodb_config:
