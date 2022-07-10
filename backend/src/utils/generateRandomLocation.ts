@@ -7,7 +7,7 @@ type GeoPoint = {
 };
 
 const centerPoint: GeoPoint = { latitude: 52.191097, longitude: 19.355406 };
-const radiusInKM = 10;
+const radiusInKM = 250;
 const radius = radiusInKM * 1000; // meters
 
 const generateRandomGeoPoint = () => {

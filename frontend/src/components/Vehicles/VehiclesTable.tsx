@@ -2,6 +2,7 @@ import React from 'react';
 import { Group, LoadingOverlay, Table as TableComponent } from '@mantine/core';
 import { Edit, Trash } from 'tabler-icons-react';
 import { VehicleForm } from '../VehicleModalForm';
+import { formatLocaleDateTime } from '../../helpers/formatLocaleDateTime';
 
 type GeoLocationPoint = {
   latitude: number;
@@ -23,9 +24,6 @@ type VehicleTableProps = {
   onEdit: (id: string, vehicleObject: VehicleForm) => void;
   onDelete: (id: string, vehicleObject: VehicleForm) => void;
 };
-
-const formatLocaleDateTime = (ISODateTime: string) =>
-  new Date(ISODateTime).toLocaleString();
 
 const formatGeolocationPoint = (
   geoLocationPoint: GeoLocationPoint | undefined
@@ -59,7 +57,7 @@ function VehiclesTable({
         <td>
           <Group>
             <Edit
-              color="blue"
+              color="#4065bf"
               onClick={() =>
                 // eslint-disable-next-line no-underscore-dangle
                 onEdit(element._id, {
@@ -69,7 +67,7 @@ function VehiclesTable({
               }
             />
             <Trash
-              color="red"
+              color="#bf4140"
               onClick={() =>
                 // eslint-disable-next-line no-underscore-dangle
                 onDelete(element._id, {
