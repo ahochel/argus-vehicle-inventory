@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import generateRandomGeoPoint from '../utils/generateRandomLocation';
 
 const vehicleSchema = new mongoose.Schema({
   vehicleName: String,
@@ -9,7 +10,12 @@ const vehicleSchema = new mongoose.Schema({
     enum: ['SUV', 'Truck', 'Hybrid'],
   },
   lastSuccessfulConn: Date,
-  lastGeolocationPoint: Date,
+  lastGeolocationPoint: {
+    type: {
+      latitude: { type: Number, required: true },
+      longitude: { type: Number, required: true },
+    },
+  },
 });
 
 vehicleSchema.pre(['save'], function beforeSave(next) {
@@ -17,6 +23,7 @@ vehicleSchema.pre(['save'], function beforeSave(next) {
 
   this.set({ lastSuccessfulConn: now });
   this.set({ createdAt: now });
+  this.set({ lastGeolocationPoint: generateRandomGeoPoint() });
 
   next();
 });
@@ -25,6 +32,7 @@ vehicleSchema.pre('updateOne', function beforeUpdate(next) {
   const now = new Date();
 
   this.set({ lastSuccessfulConn: now });
+  this.set({ lastGeolocationPoint: generateRandomGeoPoint() });
 
   next();
 });

@@ -3,13 +3,18 @@ import { Group, LoadingOverlay, Table as TableComponent } from '@mantine/core';
 import { Edit, Trash } from 'tabler-icons-react';
 import { VehicleForm } from '../VehicleModalForm';
 
+type GeoLocationPoint = {
+  latitude: number;
+  longitude: number;
+};
+
 export type VehicleData = {
   _id: string;
   vehicleName: string;
   createdAt: string;
   carType: VehicleForm['carType'];
   lastSuccessfulConn: string;
-  lastGeolocationPoint: string;
+  lastGeolocationPoint: GeoLocationPoint;
 }[];
 
 type VehicleTableProps = {
@@ -17,6 +22,21 @@ type VehicleTableProps = {
   data: VehicleData | null;
   onEdit: (id: string, vehicleObject: VehicleForm) => void;
   onDelete: (id: string, vehicleObject: VehicleForm) => void;
+};
+
+const formatLocaleDateTime = (ISODateTime: string) =>
+  new Date(ISODateTime).toLocaleString();
+
+const formatGeolocationPoint = (
+  geoLocationPoint: GeoLocationPoint | undefined
+) => {
+  if (!geoLocationPoint) {
+    return '';
+  }
+
+  const { latitude, longitude } = geoLocationPoint;
+
+  return `${latitude}, ${longitude}`;
 };
 
 function VehiclesTable({
@@ -33,9 +53,9 @@ function VehiclesTable({
       <tr key={element._id}>
         <td>{element.vehicleName}</td>
         <td>{element.carType}</td>
-        <td>{element.createdAt}</td>
-        <td>{element.lastSuccessfulConn}</td>
-        <td>{element.lastGeolocationPoint}</td>
+        <td>{formatLocaleDateTime(element.createdAt)}</td>
+        <td>{formatLocaleDateTime(element.lastSuccessfulConn)}</td>
+        <td>{formatGeolocationPoint(element.lastGeolocationPoint)}</td>
         <td>
           <Group>
             <Edit
