@@ -1,17 +1,23 @@
 import express, { Application, Request, Response } from 'express';
-import database from './database';
 
-// Boot express
-const app: Application = express();
-const port = 3333;
+import establishDbConnection from './utils/establishDbConnection';
 
-// Application routing
-app.use('/', (req: Request, res: Response) => {
-  res.status(200).send({ data: 'Hello world!' });
-});
+const initApp = async () => {
+  const app: Application = express();
+  const port = 3333;
 
-// Start server
-// eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Server is listening on port ${port}!`));
+  app.use(express.json());
 
-console.log(database);
+  app.get('/', (req: Request, res: Response) => {
+    res.status(200).send({ data: 'Hello world!' });
+  });
+
+  if (!(await establishDbConnection())) {
+    process.exit(1);
+  }
+
+  // eslint-disable-next-line no-console
+  app.listen(port, () => console.log(`Server is listening on port ${port}!`));
+};
+
+initApp();
