@@ -17,7 +17,7 @@ function Vehicles() {
 
   const submitForm = useCallback(
     async (values: VehicleForm) => {
-      const URLSuffix = modalMode === 'Edit' && `/${editedVehicleID}`;
+      const URLSuffix = (modalMode === 'Edit' && `/${editedVehicleID}`) || '';
       const requestOptions = {
         method: modalMode === 'Edit' ? 'PATCH' : 'POST',
         headers: { 'Content-Type': 'application/json' },
