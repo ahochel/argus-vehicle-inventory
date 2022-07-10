@@ -1,14 +1,21 @@
 import React from 'react';
-import { CarCrane, Map2, Users, Logout } from 'tabler-icons-react';
+import { CarCrane, Map2 } from 'tabler-icons-react';
 import { ThemeIcon, UnstyledButton, Group, Text } from '@mantine/core';
+import { Link, useMatch } from 'react-router-dom';
 
 interface MainLinkProps {
   icon: React.ReactNode;
   color: string;
   label: string;
+  to: string;
 }
 
-function MainLink({ icon, color, label }: MainLinkProps) {
+function MainLink({ icon, color, label, to }: MainLinkProps) {
+  const match = useMatch({
+    path: to,
+    end: true,
+  });
+
   return (
     <UnstyledButton
       sx={(theme) => ({
@@ -19,7 +26,7 @@ function MainLink({ icon, color, label }: MainLinkProps) {
         color:
           theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 
-        '&:hover': {
+        [match ? '&' : '&:hover']: {
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[6]
@@ -27,22 +34,27 @@ function MainLink({ icon, color, label }: MainLinkProps) {
         },
       })}
     >
-      <Group>
-        <ThemeIcon color={color} variant="light">
-          {icon}
-        </ThemeIcon>
+      <Link to={to}>
+        <Group>
+          <ThemeIcon color={color} variant="light">
+            {icon}
+          </ThemeIcon>
 
-        <Text size="sm">{label}</Text>
-      </Group>
+          <Text size="sm">{label}</Text>
+        </Group>
+      </Link>
     </UnstyledButton>
   );
 }
 
 const data = [
-  { icon: <Map2 size={16} />, color: 'teal', label: 'Map' },
-  { icon: <CarCrane size={16} />, color: 'blue', label: 'Inventory' },
-  { icon: <Users size={16} />, color: 'violet', label: 'Users' },
-  { icon: <Logout size={16} />, color: 'grape', label: 'Logout' },
+  { to: '/', icon: <Map2 size={16} />, color: 'teal', label: 'Map' },
+  {
+    to: '/vehicles',
+    icon: <CarCrane size={16} />,
+    color: 'blue',
+    label: 'Inventory',
+  },
 ];
 
 export function MainLinks() {
