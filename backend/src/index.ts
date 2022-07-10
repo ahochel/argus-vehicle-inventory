@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import helmet from 'helmet';
 
 import establishDbConnection from './utils/establishDbConnection';
 
@@ -8,6 +9,7 @@ const initApp = async () => {
 
   app.use(express.json());
 
+  app.use(helmet());
   app.get('/', (req: Request, res: Response) => {
     res.status(200).send({ data: 'Hello world!' });
   });
