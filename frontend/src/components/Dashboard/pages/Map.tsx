@@ -4,8 +4,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { GeoJSONSourceOptions } from 'mapbox-gl';
 import { LayerProps } from 'react-map-gl/dist/es5';
 
-const mapboxAccessToken = '';
-
 const geojson: GeoJSONSourceOptions['data'] = {
   type: 'FeatureCollection',
   features: [
@@ -36,7 +34,7 @@ function Map() {
       }}
       style={{ width: '100%', height: '100%' }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={mapboxAccessToken}
+      mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
     >
       <Source id="my-data" type="geojson" data={geojson}>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
