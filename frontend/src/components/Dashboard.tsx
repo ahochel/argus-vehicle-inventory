@@ -13,10 +13,7 @@ import { Logo } from './Dashboard/Logo';
 import { MainLinks } from './Dashboard/MainLinks';
 import { User } from './Dashboard/User';
 import Map from './Dashboard/pages/Map';
-
-function Vehicles() {
-  return <h1>Vehicles page</h1>;
-}
+import Vehicles from './Dashboard/pages/Vehicles';
 
 function Dashboard() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();

@@ -4,7 +4,7 @@ import VehicleModel from '../models/vehicle';
 export const getAllVehicles = async (req: Request, res: Response) => {
   const allVehicles = await VehicleModel.find();
 
-  res.json(allVehicles);
+  res.json({ data: allVehicles });
 };
 
 export const createVehicle = async (req: Request, res: Response) => {
@@ -17,7 +17,7 @@ export const createVehicle = async (req: Request, res: Response) => {
 
   await newVehicle.save();
 
-  res.json(newVehicle);
+  res.json({ data: newVehicle });
 };
 
 export const updateVehicle = async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
     { new: true, runValidators: true }
   );
 
-  res.json(updatedVehicle);
+  res.json({ data: updatedVehicle });
 };
 
 export const deleteVehicle = async (req: Request, res: Response) => {
@@ -40,5 +40,5 @@ export const deleteVehicle = async (req: Request, res: Response) => {
     _id: vehicleId,
   });
 
-  res.json(removedVehicle);
+  res.json({ data: removedVehicle });
 };

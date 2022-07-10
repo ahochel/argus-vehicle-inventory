@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 import routes from './routes';
 import establishDbConnection from './utils/establishDbConnection';
 
@@ -8,6 +9,7 @@ const initApp = async () => {
   const port = 3333;
 
   app.use(helmet());
+  app.use(cors());
   app.use(express.json());
 
   app.use('/api', routes());
