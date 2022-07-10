@@ -24,7 +24,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
   const { vehicleId } = req.params;
   const { vehicleName, carType } = req.body;
 
-  const updatedVehicle = await VehicleModel.findOneAndUpdate(
+  const updatedVehicle = await VehicleModel.updateOne(
     { _id: vehicleId },
     { vehicleName, carType },
     { new: true, runValidators: true }
