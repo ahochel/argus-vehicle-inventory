@@ -6,4 +6,5 @@ build:
   docker:
     web: Dockerfile
   config:
-    env_file: .env
+    REACT_APP_MAPBOX_TOKEN: pk.eyJ1IjoieGFyYWZvMTM3MyIsImEiOiJja3p6Z2dqMmswOXk3M3BueHB6a3N2MGYwIn0.tfxJ6QACnYCVOS0ZJM7oJw
+    REACT_APP_BACKEND_API_URL: http://localhost:3333/api
