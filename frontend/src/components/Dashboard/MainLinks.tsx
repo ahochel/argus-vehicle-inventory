@@ -53,7 +53,7 @@ const data = [
     to: '/vehicles',
     icon: <CarCrane size={16} />,
     color: 'blue',
-    label: 'Inventory',
+    label: 'Vehicles',
   },
 ];
 

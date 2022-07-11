@@ -95,7 +95,7 @@ function VehiclesTable({
   return (
     <div style={{ position: 'relative' }}>
       <LoadingOverlay visible={isLoading} />
-      <TableComponent>
+      <TableComponent highlightOnHover>
         <thead>
           <tr>
             <th>Vehicle name</th>
