@@ -5,7 +5,7 @@ import {
   LoadingOverlay,
   Table as TableComponent,
 } from '@mantine/core';
-import { Edit, Trash } from 'tabler-icons-react';
+import { Edit, InfoCircle, Trash } from 'tabler-icons-react';
 import { VehicleForm } from '../VehicleModalForm';
 import { formatLocaleDateTime } from '../../helpers/formatLocaleDateTime';
 
@@ -50,47 +50,57 @@ function VehiclesTable({
 }: VehicleTableProps) {
   const rows =
     data &&
-    data.map((element) => (
-      // FIXME: Rename rename to vehicleId
-      // eslint-disable-next-line no-underscore-dangle
-      <tr key={element._id}>
-        <td>{element.vehicleName}</td>
-        <td>{element.carType}</td>
-        <td>{formatLocaleDateTime(element.createdAt)}</td>
-        <td>{formatLocaleDateTime(element.lastSuccessfulConn)}</td>
-        <td>{formatGeolocationPoint(element.lastGeolocationPoint)}</td>
-        <td>
-          <Group position="left">
-            <ActionIcon
-              variant="default"
-              onClick={() =>
-                // eslint-disable-next-line no-underscore-dangle
-                onEdit(element._id, {
-                  vehicleName: element.vehicleName,
-                  carType: element.carType,
-                })
-              }
-              size={30}
-            >
-              <Edit size={16} color="#4065bf" />
-            </ActionIcon>
-            <ActionIcon
-              variant="default"
-              onClick={() =>
-                // eslint-disable-next-line no-underscore-dangle
-                onDelete(element._id, {
-                  vehicleName: element.vehicleName,
-                  carType: element.carType,
-                })
-              }
-              size={30}
-            >
-              <Trash size={16} color="#bf4140" />
-            </ActionIcon>
+    ((data.length === 0 && (
+      <tr>
+        <td colSpan={6}>
+          <Group position="center">
+            <InfoCircle />
+            No Vehicles added yet
           </Group>
         </td>
       </tr>
-    ));
+    )) ||
+      data.map((element) => (
+        // FIXME: Rename rename to vehicleId
+        // eslint-disable-next-line no-underscore-dangle
+        <tr key={element._id}>
+          <td>{element.vehicleName}</td>
+          <td>{element.carType}</td>
+          <td>{formatLocaleDateTime(element.createdAt)}</td>
+          <td>{formatLocaleDateTime(element.lastSuccessfulConn)}</td>
+          <td>{formatGeolocationPoint(element.lastGeolocationPoint)}</td>
+          <td>
+            <Group position="left">
+              <ActionIcon
+                variant="default"
+                onClick={() =>
+                  // eslint-disable-next-line no-underscore-dangle
+                  onEdit(element._id, {
+                    vehicleName: element.vehicleName,
+                    carType: element.carType,
+                  })
+                }
+                size={30}
+              >
+                <Edit size={16} color="#4065bf" />
+              </ActionIcon>
+              <ActionIcon
+                variant="default"
+                onClick={() =>
+                  // eslint-disable-next-line no-underscore-dangle
+                  onDelete(element._id, {
+                    vehicleName: element.vehicleName,
+                    carType: element.carType,
+                  })
+                }
+                size={30}
+              >
+                <Trash size={16} color="#bf4140" />
+              </ActionIcon>
+            </Group>
+          </td>
+        </tr>
+      )));
 
   return (
     <div style={{ position: 'relative' }}>
