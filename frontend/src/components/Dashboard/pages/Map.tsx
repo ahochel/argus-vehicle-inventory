@@ -40,12 +40,14 @@ const layerStyle: LayerProps = {
   },
 };
 
+const BACKEND_URL = 'https://ahochel-vehicle-inventory.herokuapp.com/api';
+
 // FIXME: Rename _id to vehicleId
 /* eslint-disable no-underscore-dangle */
 function Map() {
   const { data } = useFetchData<{
     data: VehicleData;
-  }>(HTTPMethods.GET, `${process.env.REACT_APP_BACKEND_API_URL}/vehicle`);
+  }>(HTTPMethods.GET, `${BACKEND_URL}/vehicle`);
   const [popupInfo, setPopupInfo] = useState<Unpacked<VehicleData> | null>(
     null
   );
@@ -80,7 +82,7 @@ function Map() {
       }}
       style={{ width: '100%', height: '100%' }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      mapboxAccessToken="pk.eyJ1IjoieGFyYWZvMTM3MyIsImEiOiJja3p6Z2dqMmswOXk3M3BueHB6a3N2MGYwIn0.tfxJ6QACnYCVOS0ZJM7oJw"
     >
       <GeolocateControl position="top-left" />
       <FullscreenControl position="top-left" />

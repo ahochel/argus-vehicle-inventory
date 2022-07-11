@@ -7,9 +7,10 @@ import ErrorNotification from '../../ErrorNotification';
 import VehicleModalForm, { VehicleForm } from '../../VehicleModalForm';
 
 function Vehicles() {
+  const BACKEND_URL = 'https://ahochel-vehicle-inventory.herokuapp.com/api';
   const { isLoading, isError, data, triggerFetch } = useFetchData<{
     data: VehicleData;
-  }>(HTTPMethods.GET, `${process.env.REACT_APP_BACKEND_API_URL}/vehicle`);
+  }>(HTTPMethods.GET, `${BACKEND_URL}/vehicle`);
   const [modalMode, setModalMode] = useState<'Add' | 'Edit' | false>(false);
   const [editedVehicleID, setEditedVehicleID] = useState('');
   const [vehicleInitialValues, setVehicleInitialValues] =
@@ -23,10 +24,8 @@ function Vehicles() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       };
-      await fetch(
-        `${process.env.REACT_APP_BACKEND_API_URL}/vehicle${URLSuffix}`,
-        requestOptions
-      );
+
+      await fetch(`${BACKEND_URL}/vehicle${URLSuffix}`, requestOptions);
       // TODO: Add error and success handling
       setModalMode(false);
       triggerFetch();
@@ -52,10 +51,7 @@ function Vehicles() {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     };
-    await fetch(
-      `${process.env.REACT_APP_BACKEND_API_URL}/vehicle/${vehicleId}`,
-      requestOptions
-    );
+    await fetch(`${BACKEND_URL}/vehicle/${vehicleId}`, requestOptions);
     triggerFetch();
     // TODO: Add error and success handling
   };
