@@ -40,7 +40,9 @@ const layerStyle: LayerProps = {
   },
 };
 
-const BACKEND_URL = 'https://ahochel-vehicle-inventory.herokuapp.com/api';
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_API_URL ||
+  'https://ahochel-vehicle-inventory.herokuapp.com/api';
 
 // FIXME: Rename _id to vehicleId
 /* eslint-disable no-underscore-dangle */

@@ -7,7 +7,9 @@ import ErrorNotification from '../../ErrorNotification';
 import VehicleModalForm, { VehicleForm } from '../../VehicleModalForm';
 
 function Vehicles() {
-  const BACKEND_URL = 'https://ahochel-vehicle-inventory.herokuapp.com/api';
+  const BACKEND_URL =
+    process.env.REACT_APP_BACKEND_API_URL ||
+    'https://ahochel-vehicle-inventory.herokuapp.com/api';
   const { isLoading, isError, data, triggerFetch } = useFetchData<{
     data: VehicleData;
   }>(HTTPMethods.GET, `${BACKEND_URL}/vehicle`);
