@@ -18,6 +18,8 @@ function MainLink({ icon, color, label, to }: MainLinkProps) {
 
   return (
     <UnstyledButton
+      to={to}
+      component={Link}
       sx={(theme) => ({
         display: 'block',
         width: '100%',
@@ -34,15 +36,13 @@ function MainLink({ icon, color, label, to }: MainLinkProps) {
         },
       })}
     >
-      <Link to={to}>
-        <Group>
-          <ThemeIcon color={color} variant="light">
-            {icon}
-          </ThemeIcon>
+      <Group>
+        <ThemeIcon color={color} variant="light">
+          {icon}
+        </ThemeIcon>
 
-          <Text size="sm">{label}</Text>
-        </Group>
-      </Link>
+        <Text size="sm">{label}</Text>
+      </Group>
     </UnstyledButton>
   );
 }

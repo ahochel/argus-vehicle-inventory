@@ -1,5 +1,10 @@
 import React from 'react';
-import { Group, LoadingOverlay, Table as TableComponent } from '@mantine/core';
+import {
+  ActionIcon,
+  Group,
+  LoadingOverlay,
+  Table as TableComponent,
+} from '@mantine/core';
 import { Edit, Trash } from 'tabler-icons-react';
 import { VehicleForm } from '../VehicleModalForm';
 import { formatLocaleDateTime } from '../../helpers/formatLocaleDateTime';
@@ -55,9 +60,9 @@ function VehiclesTable({
         <td>{formatLocaleDateTime(element.lastSuccessfulConn)}</td>
         <td>{formatGeolocationPoint(element.lastGeolocationPoint)}</td>
         <td>
-          <Group>
-            <Edit
-              color="#4065bf"
+          <Group position="left">
+            <ActionIcon
+              variant="default"
               onClick={() =>
                 // eslint-disable-next-line no-underscore-dangle
                 onEdit(element._id, {
@@ -65,9 +70,12 @@ function VehiclesTable({
                   carType: element.carType,
                 })
               }
-            />
-            <Trash
-              color="#bf4140"
+              size={30}
+            >
+              <Edit size={16} color="#4065bf" />
+            </ActionIcon>
+            <ActionIcon
+              variant="default"
               onClick={() =>
                 // eslint-disable-next-line no-underscore-dangle
                 onDelete(element._id, {
@@ -75,7 +83,10 @@ function VehiclesTable({
                   carType: element.carType,
                 })
               }
-            />
+              size={30}
+            >
+              <Trash size={16} color="#bf4140" />
+            </ActionIcon>
           </Group>
         </td>
       </tr>
