@@ -7,7 +7,7 @@ import establishDbConnection from './utils/establishDbConnection';
 
 const initApp = async () => {
   const app: Application = express();
-  const port = 3333;
+  const port = process.env.PORT;
 
   app.use(helmet());
   app.use(cors());

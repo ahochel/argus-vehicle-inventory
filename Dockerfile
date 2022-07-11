@@ -2,6 +2,10 @@
 #   Frontend build
 #
 FROM node:16.16.0-alpine as frontend
+
+ARG REACT_APP_MAPBOX_TOKEN
+ARG REACT_APP_BACKEND_API_URL
+
 WORKDIR /tmp/app
 
 # Create cached layer with node_modules only
