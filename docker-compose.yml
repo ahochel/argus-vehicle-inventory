@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   frontend:
-    container_name: argus-vehicle-inventory-frontend
+    container_name: vehicle-inventory-frontend
     image: node:16.16.0-alpine
     working_dir: /usr/src/app
     entrypoint: /usr/src/app/entrypoint.sh
@@ -15,7 +15,7 @@ services:
       REACT_APP_BACKEND_API_URL: ${REACT_APP_BACKEND_API_URL}
 
   backend:
-    container_name: argus-vehicle-inventory-backend
+    container_name: vehicle-inventory-backend
     image: node:16.16.0-alpine
     working_dir: /usr/src/app
     entrypoint: /usr/src/app/entrypoint.sh
@@ -33,7 +33,7 @@ services:
       DB_NAME: ${MONGODB_APP_DBNAME}
 
   mongodb:
-    container_name: argus-vehicle-inventory-mongodb
+    container_name: vehicle-inventory-mongodb
     image: mongo:5.0
     ports:
       - "27017:27017"

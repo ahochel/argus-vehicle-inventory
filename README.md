@@ -1,4 +1,4 @@
-# argus-vehicle-inventory
+# vehicle-inventory
 
 ## Setup development environment
 * `cp .env.sample .env`
