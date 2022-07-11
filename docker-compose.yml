@@ -27,11 +27,7 @@ services:
       - mongodb
     environment:
       PORT: 3333
-      MONGODB_HOST: mongodb
-      MONGODB_PORT: 27017
-      MONGODB_APP_USER: ${MONGODB_APP_USER}
-      MONGODB_APP_PASS: ${MONGODB_APP_PASS}
-      MONGODB_APP_DBNAME: ${MONGODB_APP_DBNAME}
+      MONGODB_URI: ${MONGODB_URI}
 
   mongodb:
     container_name: vehicle-inventory-mongodb

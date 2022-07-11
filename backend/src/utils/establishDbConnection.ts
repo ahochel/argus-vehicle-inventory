@@ -2,14 +2,11 @@ import mongoose from 'mongoose';
 
 /* eslint-disable no-console */
 const establishDbConnection = async () => {
-  const {
-    MONGODB_HOST,
-    MONGODB_PORT,
-    MONGODB_APP_USER,
-    MONGODB_APP_PASS,
-    MONGODB_APP_DBNAME,
-  } = process.env;
-  const connectionURI = `mongodb://${MONGODB_APP_USER}:${MONGODB_APP_PASS}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_APP_DBNAME}`;
+  const connectionURI = process.env.MONGODB_URI;
+
+  if (!connectionURI) {
+    throw new Error('MONGODB_URI env is missing');
+  }
 
   console.log(connectionURI);
 
