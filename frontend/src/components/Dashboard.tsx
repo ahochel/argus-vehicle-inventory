@@ -11,7 +11,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MoonStars, Sun } from 'tabler-icons-react';
 import { Logo } from './Dashboard/Logo';
 import { MainLinks } from './Dashboard/MainLinks';
-import { User } from './Dashboard/User';
 import Map from './Dashboard/pages/Map';
 import Vehicles from './Dashboard/pages/Vehicles';
 
@@ -23,12 +22,9 @@ function Dashboard() {
       <AppShell
         padding="md"
         navbar={
-          <Navbar width={{ base: 300 }} height={500} p="xs">
+          <Navbar width={{ base: 300 }} p="xs">
             <Navbar.Section grow mt="xs">
               <MainLinks />
-            </Navbar.Section>
-            <Navbar.Section>
-              <User />
             </Navbar.Section>
           </Navbar>
         }
