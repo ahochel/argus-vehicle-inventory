@@ -11,11 +11,8 @@ const initApp = async () => {
 
   app.use(
     helmet({
-      contentSecurityPolicy: {
-        directives: {
-          workerSrc: "'self' blob:",
-        },
-      },
+      // FIXME: Disable only required entries
+      contentSecurityPolicy: false,
     })
   );
   app.use(cors());
