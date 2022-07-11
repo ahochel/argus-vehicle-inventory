@@ -9,7 +9,15 @@ const initApp = async () => {
   const app: Application = express();
   const port = process.env.PORT;
 
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          workerSrc: "'self' blob:",
+        },
+      },
+    })
+  );
   app.use(cors());
   app.use(express.json());
 
