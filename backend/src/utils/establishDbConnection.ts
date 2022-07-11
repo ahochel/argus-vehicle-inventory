@@ -2,8 +2,16 @@ import mongoose from 'mongoose';
 
 /* eslint-disable no-console */
 const establishDbConnection = async () => {
-  const { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
-  const connectionURI = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+  const {
+    MONGODB_HOST,
+    MONGODB_PORT,
+    MONGODB_APP_USER,
+    MONGODB_APP_PASS,
+    MONGODB_APP_DBNAME,
+  } = process.env;
+  const connectionURI = `mongodb://${MONGODB_APP_USER}:${MONGODB_APP_PASS}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_APP_DBNAME}`;
+
+  console.log(connectionURI);
 
   let connection;
 

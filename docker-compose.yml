@@ -26,11 +26,11 @@ services:
     depends_on:
       - mongodb
     environment:
-      DB_HOST: mongodb
-      DB_PORT: 27017
-      DB_USER: ${MONGODB_APP_USER}
-      DB_PASS: ${MONGODB_APP_PASS}
-      DB_NAME: ${MONGODB_APP_DBNAME}
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_APP_USER: ${MONGODB_APP_USER}
+      MONGODB_APP_PASS: ${MONGODB_APP_PASS}
+      MONGODB_APP_DBNAME: ${MONGODB_APP_DBNAME}
 
   mongodb:
     container_name: vehicle-inventory-mongodb
@@ -42,8 +42,8 @@ services:
       - mongodb_config:/data/configdb
       - ./provision/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASS}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGODB_APP_USER: ${MONGODB_APP_USER}
       MONGODB_APP_PASS: ${MONGODB_APP_PASS}
       MONGODB_APP_DBNAME: ${MONGODB_APP_DBNAME}
